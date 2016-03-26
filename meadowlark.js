@@ -3,6 +3,9 @@ var fs = require('fs');
 var http = require('http');
 var app = express();
 
+//dailyQuote.js: Quote Module
+var quote = require('./lib/dailyQuote.js');
+
 //Setup Express-Handlebars
 var handlebars = require('express-handlebars')
 	.create({defaultLayout: 'main'});
@@ -21,9 +24,7 @@ app.get('/', function(req,res){
 
 //About Route
 app.get('/about', function(req,res){
-	var randomQuote = 
-		dailyQuote[ Math.floor(Math.random() * dailyQuote.length)];
-	res.render('about', { dailyQuote: randomQuote });
+	res.render('about', { quote: quote.getQuote() });
 });
 
 //custom 404 page
@@ -44,12 +45,3 @@ app.listen(app.get('port'), function(){
 	app.get('port') + '; press Ctrl-C to terminate.' );
 });
 
-var dailyQuote = [
-	"Do or do not, there is no try.",
-	"Conquer your fears or they will conquer you.",
-	"Rivers need springs.",
-	"Do not fear what you don't know.",
-	"Whenever possible, keep it simple.",
-	"The oak tree and the cypress grow not in each other's shadow.",
-	"Work is love made visible."
-];

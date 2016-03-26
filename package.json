@@ -8,6 +8,10 @@
   },
   "author": "Wesley Jinks",
   "license": "ISC",
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/shoedog/nWeb.git"
+	},
   "dependencies": {
     "express": "^4.13.4",
     "express3-handlebars": "^0.5.2",
