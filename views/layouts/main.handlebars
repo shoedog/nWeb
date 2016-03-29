@@ -2,9 +2,29 @@
 <html>
 <head>
 	<title>Meadowlark Travel</title>
+	{{#if showTests}}
+		<link rel="stylesheet" href="/vendor/mocha.css">
+	{{/if}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-	<header><img src="/img/marble.jpg" alt="Marble Hallway"></header>
+	<header><img src="/img/mtnAur.jpg" alt="Marble Hallway" width=50% height=50%></header>
 	{{{body}}}
+
+	{{#if showTests}}
+		<div id="mocha"></div>
+		<script src="/vendor/mocha.js"></script>
+		<script src="/vendor/chai.js"></script>
+		<script>
+			mocha.ui('tdd');
+			var assert = chai.assert;
+		</script>
+		<script src="/qa/tests-global.js"></script>
+		{{#if pageTestScript}}
+			<script src="{{pageTestScript}}"></script>
+		{{/if}}
+		<script>mocha.run();</script>
+	{{/if}}
 </body>
 </html>
